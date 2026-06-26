@@ -83,9 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Control de acceso, membresías y comunidad fitness en Huánuco." },
       { name: "author", content: "Evolution Gym" },
       { property: "og:title", content: "Evolution Gym Huánuco" },
-      { property: "og:description", content: "Control de acceso, membresías y comunidad fitness." },
+      { property: "og:description", content: "Control de acceso, membresías y comunidad fitness en Huánuco." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Evolution Gym Huánuco" },
+      { name: "twitter:description", content: "Control de acceso, membresías y comunidad fitness en Huánuco." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b1938393-4fb6-4269-97aa-68225d20c607/id-preview-c4b35b3c--8a989d85-bce7-4450-b224-595d6aef9d73.lovable.app-1782493548729.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b1938393-4fb6-4269-97aa-68225d20c607/id-preview-c4b35b3c--8a989d85-bce7-4450-b224-595d6aef9d73.lovable.app-1782493548729.png" },
     ],
     links: [
       {
