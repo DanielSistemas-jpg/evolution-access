@@ -23,6 +23,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
 import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_authenticated.admin.visitantes'
 import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
+import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -97,6 +98,12 @@ const AuthenticatedAdminSociosRoute =
     path: '/socios',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminControlAccesoRoute =
+  AuthenticatedAdminControlAccesoRouteImport.update({
+    id: '/control-acceso',
+    path: '/control-acceso',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -123,6 +131,7 @@ export interface FileRoutesByTo {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -140,6 +149,7 @@ export interface FileRoutesById {
   '/_authenticated/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
+  '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/_authenticated/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/control-acceso'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin/'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/control-acceso'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin'
@@ -187,6 +199,7 @@ export interface FileRouteTypes {
     | '/_authenticated/notificaciones'
     | '/_authenticated/perfil'
     | '/auth_/admin'
+    | '/_authenticated/admin/control-acceso'
     | '/_authenticated/admin/socios'
     | '/_authenticated/admin/visitantes'
     | '/_authenticated/admin/'
@@ -299,16 +312,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSociosRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/control-acceso': {
+      id: '/_authenticated/admin/control-acceso'
+      path: '/control-acceso'
+      fullPath: '/admin/control-acceso'
+      preLoaderRoute: typeof AuthenticatedAdminControlAccesoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
   AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
   AuthenticatedAdminVisitantesRoute: typeof AuthenticatedAdminVisitantesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
   AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
   AuthenticatedAdminVisitantesRoute: AuthenticatedAdminVisitantesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
