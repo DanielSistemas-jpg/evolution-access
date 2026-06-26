@@ -26,6 +26,7 @@ import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenti
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated.admin.eventos'
 import { Route as AuthenticatedAdminDispositivosRouteImport } from './routes/_authenticated.admin.dispositivos'
 import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
+import { Route as AuthenticatedAdminConfiguracionRouteImport } from './routes/_authenticated.admin.configuracion'
 import { Route as AuthenticatedAdminAlertasRouteImport } from './routes/_authenticated.admin.alertas'
 
 const AuthRoute = AuthRouteImport.update({
@@ -119,6 +120,12 @@ const AuthenticatedAdminControlAccesoRoute =
     path: '/control-acceso',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminConfiguracionRoute =
+  AuthenticatedAdminConfiguracionRouteImport.update({
+    id: '/configuracion',
+    path: '/configuracion',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminAlertasRoute =
   AuthenticatedAdminAlertasRouteImport.update({
     id: '/alertas',
@@ -138,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -156,6 +164,7 @@ export interface FileRoutesByTo {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
   '/_authenticated/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/_authenticated/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
   '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/_authenticated/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/alertas'
+    | '/admin/configuracion'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
     | '/admin/eventos'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/alertas'
+    | '/admin/configuracion'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
     | '/admin/eventos'
@@ -236,6 +248,7 @@ export interface FileRouteTypes {
     | '/_authenticated/perfil'
     | '/auth_/admin'
     | '/_authenticated/admin/alertas'
+    | '/_authenticated/admin/configuracion'
     | '/_authenticated/admin/control-acceso'
     | '/_authenticated/admin/dispositivos'
     | '/_authenticated/admin/eventos'
@@ -372,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminControlAccesoRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/configuracion': {
+      id: '/_authenticated/admin/configuracion'
+      path: '/configuracion'
+      fullPath: '/admin/configuracion'
+      preLoaderRoute: typeof AuthenticatedAdminConfiguracionRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/alertas': {
       id: '/_authenticated/admin/alertas'
       path: '/alertas'
@@ -384,6 +404,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAlertasRoute: typeof AuthenticatedAdminAlertasRoute
+  AuthenticatedAdminConfiguracionRoute: typeof AuthenticatedAdminConfiguracionRoute
   AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
   AuthenticatedAdminDispositivosRoute: typeof AuthenticatedAdminDispositivosRoute
   AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
@@ -394,6 +415,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAlertasRoute: AuthenticatedAdminAlertasRoute,
+  AuthenticatedAdminConfiguracionRoute: AuthenticatedAdminConfiguracionRoute,
   AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
   AuthenticatedAdminDispositivosRoute: AuthenticatedAdminDispositivosRoute,
   AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
