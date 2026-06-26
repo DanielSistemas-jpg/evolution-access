@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { ShieldCheck } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 
-export const Route = createFileRoute("/auth/admin")({
+export const Route = createFileRoute("/auth_/admin")({
   head: () => ({ meta: [{ title: "Acceso administrador — Evolution Gym" }] }),
   component: AdminLogin,
 });

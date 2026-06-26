@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthAdminRouteImport } from './routes/auth.admin'
+import { Route as AuthAdminRouteImport } from './routes/auth_.admin'
 import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated.perfil'
 import { Route as AuthenticatedNotificacionesRouteImport } from './routes/_authenticated.notificaciones'
 import { Route as AuthenticatedMembresiaRouteImport } from './routes/_authenticated.membresia'
@@ -35,9 +35,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthAdminRoute = AuthAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthRoute,
+  id: '/auth_/admin',
+  path: '/auth/admin',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
   id: '/perfil',
@@ -74,7 +74,7 @@ const AuthenticatedAsistenciasRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRouteWithChildren
+  '/auth': typeof AuthRoute
   '/asistencias': typeof AuthenticatedAsistenciasRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/eventos': typeof AuthenticatedEventosRoute
@@ -85,7 +85,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRouteWithChildren
+  '/auth': typeof AuthRoute
   '/asistencias': typeof AuthenticatedAsistenciasRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/eventos': typeof AuthenticatedEventosRoute
@@ -98,14 +98,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
+  '/auth': typeof AuthRoute
   '/_authenticated/asistencias': typeof AuthenticatedAsistenciasRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/eventos': typeof AuthenticatedEventosRoute
   '/_authenticated/membresia': typeof AuthenticatedMembresiaRoute
   '/_authenticated/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
-  '/auth/admin': typeof AuthAdminRoute
+  '/auth_/admin': typeof AuthAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,13 +141,14 @@ export interface FileRouteTypes {
     | '/_authenticated/membresia'
     | '/_authenticated/notificaciones'
     | '/_authenticated/perfil'
-    | '/auth/admin'
+    | '/auth_/admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  AuthRoute: typeof AuthRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  AuthAdminRoute: typeof AuthAdminRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -173,12 +174,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth/admin': {
-      id: '/auth/admin'
-      path: '/admin'
+    '/auth_/admin': {
+      id: '/auth_/admin'
+      path: '/auth/admin'
       fullPath: '/auth/admin'
       preLoaderRoute: typeof AuthAdminRouteImport
-      parentRoute: typeof AuthRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/perfil': {
       id: '/_authenticated/perfil'
@@ -247,20 +248,11 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
-interface AuthRouteChildren {
-  AuthAdminRoute: typeof AuthAdminRoute
-}
-
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthAdminRoute: AuthAdminRoute,
-}
-
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-  AuthRoute: AuthRouteWithChildren,
+  AuthRoute: AuthRoute,
+  AuthAdminRoute: AuthAdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
