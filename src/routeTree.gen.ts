@@ -23,6 +23,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
 import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_authenticated.admin.visitantes'
 import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
+import { Route as AuthenticatedAdminDispositivosRouteImport } from './routes/_authenticated.admin.dispositivos'
 import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
 
 const AuthRoute = AuthRouteImport.update({
@@ -98,6 +99,12 @@ const AuthenticatedAdminSociosRoute =
     path: '/socios',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminDispositivosRoute =
+  AuthenticatedAdminDispositivosRouteImport.update({
+    id: '/dispositivos',
+    path: '/dispositivos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminControlAccesoRoute =
   AuthenticatedAdminControlAccesoRouteImport.update({
     id: '/control-acceso',
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -132,6 +140,7 @@ export interface FileRoutesByTo {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -150,6 +159,7 @@ export interface FileRoutesById {
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
   '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/_authenticated/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/_authenticated/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/control-acceso'
+    | '/admin/dispositivos'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin/'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/control-acceso'
+    | '/admin/dispositivos'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin'
@@ -200,6 +212,7 @@ export interface FileRouteTypes {
     | '/_authenticated/perfil'
     | '/auth_/admin'
     | '/_authenticated/admin/control-acceso'
+    | '/_authenticated/admin/dispositivos'
     | '/_authenticated/admin/socios'
     | '/_authenticated/admin/visitantes'
     | '/_authenticated/admin/'
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSociosRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/dispositivos': {
+      id: '/_authenticated/admin/dispositivos'
+      path: '/dispositivos'
+      fullPath: '/admin/dispositivos'
+      preLoaderRoute: typeof AuthenticatedAdminDispositivosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/control-acceso': {
       id: '/_authenticated/admin/control-acceso'
       path: '/control-acceso'
@@ -324,6 +344,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
+  AuthenticatedAdminDispositivosRoute: typeof AuthenticatedAdminDispositivosRoute
   AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
   AuthenticatedAdminVisitantesRoute: typeof AuthenticatedAdminVisitantesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -331,6 +352,7 @@ interface AuthenticatedAdminRouteChildren {
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
+  AuthenticatedAdminDispositivosRoute: AuthenticatedAdminDispositivosRoute,
   AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
   AuthenticatedAdminVisitantesRoute: AuthenticatedAdminVisitantesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
