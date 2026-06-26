@@ -21,6 +21,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAsistenciasRouteImport } from './routes/_authenticated.asistencias'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
+import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_authenticated.admin.visitantes'
 import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
 
 const AuthRoute = AuthRouteImport.update({
@@ -84,6 +85,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminVisitantesRoute =
+  AuthenticatedAdminVisitantesRouteImport.update({
+    id: '/visitantes',
+    path: '/visitantes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminSociosRoute =
   AuthenticatedAdminSociosRouteImport.update({
     id: '/socios',
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -116,6 +124,7 @@ export interface FileRoutesByTo {
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -132,6 +141,7 @@ export interface FileRoutesById {
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
   '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/_authenticated/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/socios'
+    | '/admin/visitantes'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/auth/admin'
     | '/admin/socios'
+    | '/admin/visitantes'
     | '/admin'
   id:
     | '__root__'
@@ -176,6 +188,7 @@ export interface FileRouteTypes {
     | '/_authenticated/perfil'
     | '/auth_/admin'
     | '/_authenticated/admin/socios'
+    | '/_authenticated/admin/visitantes'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/visitantes': {
+      id: '/_authenticated/admin/visitantes'
+      path: '/visitantes'
+      fullPath: '/admin/visitantes'
+      preLoaderRoute: typeof AuthenticatedAdminVisitantesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/socios': {
       id: '/_authenticated/admin/socios'
       path: '/socios'
@@ -284,11 +304,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
+  AuthenticatedAdminVisitantesRoute: typeof AuthenticatedAdminVisitantesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
+  AuthenticatedAdminVisitantesRoute: AuthenticatedAdminVisitantesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
