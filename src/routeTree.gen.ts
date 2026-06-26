@@ -23,6 +23,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
 import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_authenticated.admin.visitantes'
 import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
+import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated.admin.eventos'
 import { Route as AuthenticatedAdminDispositivosRouteImport } from './routes/_authenticated.admin.dispositivos'
 import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
 import { Route as AuthenticatedAdminAlertasRouteImport } from './routes/_authenticated.admin.alertas'
@@ -100,6 +101,12 @@ const AuthenticatedAdminSociosRoute =
     path: '/socios',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminEventosRoute =
+  AuthenticatedAdminEventosRouteImport.update({
+    id: '/eventos',
+    path: '/eventos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminDispositivosRoute =
   AuthenticatedAdminDispositivosRouteImport.update({
     id: '/dispositivos',
@@ -133,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
@@ -150,6 +158,7 @@ export interface FileRoutesByTo {
   '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
@@ -170,6 +179,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/_authenticated/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/_authenticated/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/admin/alertas'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
+    | '/admin/eventos'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin/'
@@ -207,6 +218,7 @@ export interface FileRouteTypes {
     | '/admin/alertas'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
+    | '/admin/eventos'
     | '/admin/socios'
     | '/admin/visitantes'
     | '/admin'
@@ -226,6 +238,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/alertas'
     | '/_authenticated/admin/control-acceso'
     | '/_authenticated/admin/dispositivos'
+    | '/_authenticated/admin/eventos'
     | '/_authenticated/admin/socios'
     | '/_authenticated/admin/visitantes'
     | '/_authenticated/admin/'
@@ -338,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSociosRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/eventos': {
+      id: '/_authenticated/admin/eventos'
+      path: '/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/dispositivos': {
       id: '/_authenticated/admin/dispositivos'
       path: '/dispositivos'
@@ -366,6 +386,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminAlertasRoute: typeof AuthenticatedAdminAlertasRoute
   AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
   AuthenticatedAdminDispositivosRoute: typeof AuthenticatedAdminDispositivosRoute
+  AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
   AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
   AuthenticatedAdminVisitantesRoute: typeof AuthenticatedAdminVisitantesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
@@ -375,6 +396,7 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminAlertasRoute: AuthenticatedAdminAlertasRoute,
   AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
   AuthenticatedAdminDispositivosRoute: AuthenticatedAdminDispositivosRoute,
+  AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
   AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
   AuthenticatedAdminVisitantesRoute: AuthenticatedAdminVisitantesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
