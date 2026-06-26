@@ -25,6 +25,7 @@ import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_auth
 import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
 import { Route as AuthenticatedAdminDispositivosRouteImport } from './routes/_authenticated.admin.dispositivos'
 import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
+import { Route as AuthenticatedAdminAlertasRouteImport } from './routes/_authenticated.admin.alertas'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -111,6 +112,12 @@ const AuthenticatedAdminControlAccesoRoute =
     path: '/control-acceso',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminAlertasRoute =
+  AuthenticatedAdminAlertasRouteImport.update({
+    id: '/alertas',
+    path: '/alertas',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
@@ -139,6 +147,7 @@ export interface FileRoutesByTo {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/admin/socios': typeof AuthenticatedAdminSociosRoute
@@ -158,6 +167,7 @@ export interface FileRoutesById {
   '/_authenticated/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
+  '/_authenticated/admin/alertas': typeof AuthenticatedAdminAlertasRoute
   '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
   '/_authenticated/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
   '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/alertas'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
     | '/admin/socios'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/alertas'
     | '/admin/control-acceso'
     | '/admin/dispositivos'
     | '/admin/socios'
@@ -211,6 +223,7 @@ export interface FileRouteTypes {
     | '/_authenticated/notificaciones'
     | '/_authenticated/perfil'
     | '/auth_/admin'
+    | '/_authenticated/admin/alertas'
     | '/_authenticated/admin/control-acceso'
     | '/_authenticated/admin/dispositivos'
     | '/_authenticated/admin/socios'
@@ -339,10 +352,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminControlAccesoRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/alertas': {
+      id: '/_authenticated/admin/alertas'
+      path: '/alertas'
+      fullPath: '/admin/alertas'
+      preLoaderRoute: typeof AuthenticatedAdminAlertasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAlertasRoute: typeof AuthenticatedAdminAlertasRoute
   AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
   AuthenticatedAdminDispositivosRoute: typeof AuthenticatedAdminDispositivosRoute
   AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
@@ -351,6 +372,7 @@ interface AuthenticatedAdminRouteChildren {
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAlertasRoute: AuthenticatedAdminAlertasRoute,
   AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
   AuthenticatedAdminDispositivosRoute: AuthenticatedAdminDispositivosRoute,
   AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
