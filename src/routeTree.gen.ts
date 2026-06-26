@@ -9,38 +9,277 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthAdminRouteImport } from './routes/auth_.admin'
+import { Route as AuthenticatedPerfilRouteImport } from './routes/_authenticated.perfil'
+import { Route as AuthenticatedNotificacionesRouteImport } from './routes/_authenticated.notificaciones'
+import { Route as AuthenticatedMembresiaRouteImport } from './routes/_authenticated.membresia'
+import { Route as AuthenticatedEventosRouteImport } from './routes/_authenticated.eventos'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated.dashboard'
+import { Route as AuthenticatedAsistenciasRouteImport } from './routes/_authenticated.asistencias'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
+import { Route as AuthenticatedAdminVisitantesRouteImport } from './routes/_authenticated.admin.visitantes'
+import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
+import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated.admin.eventos'
+import { Route as AuthenticatedAdminDispositivosRouteImport } from './routes/_authenticated.admin.dispositivos'
+import { Route as AuthenticatedAdminControlAccesoRouteImport } from './routes/_authenticated.admin.control-acceso'
+import { Route as AuthenticatedAdminConfiguracionRouteImport } from './routes/_authenticated.admin.configuracion'
+import { Route as AuthenticatedAdminAlertasRouteImport } from './routes/_authenticated.admin.alertas'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthAdminRoute = AuthAdminRouteImport.update({
+  id: '/auth_/admin',
+  path: '/auth/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedPerfilRoute = AuthenticatedPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNotificacionesRoute =
+  AuthenticatedNotificacionesRouteImport.update({
+    id: '/notificaciones',
+    path: '/notificaciones',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedMembresiaRoute = AuthenticatedMembresiaRouteImport.update({
+  id: '/membresia',
+  path: '/membresia',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedEventosRoute = AuthenticatedEventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAsistenciasRoute =
+  AuthenticatedAsistenciasRouteImport.update({
+    id: '/asistencias',
+    path: '/asistencias',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminVisitantesRoute =
+  AuthenticatedAdminVisitantesRouteImport.update({
+    id: '/visitantes',
+    path: '/visitantes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSociosRoute =
+  AuthenticatedAdminSociosRouteImport.update({
+    id: '/socios',
+    path: '/socios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminEventosRoute =
+  AuthenticatedAdminEventosRouteImport.update({
+    id: '/eventos',
+    path: '/eventos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDispositivosRoute =
+  AuthenticatedAdminDispositivosRouteImport.update({
+    id: '/dispositivos',
+    path: '/dispositivos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminControlAccesoRoute =
+  AuthenticatedAdminControlAccesoRouteImport.update({
+    id: '/control-acceso',
+    path: '/control-acceso',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminConfiguracionRoute =
+  AuthenticatedAdminConfiguracionRouteImport.update({
+    id: '/configuracion',
+    path: '/configuracion',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAlertasRoute =
+  AuthenticatedAdminAlertasRouteImport.update({
+    id: '/alertas',
+    path: '/alertas',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/asistencias': typeof AuthenticatedAsistenciasRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/eventos': typeof AuthenticatedEventosRoute
+  '/membresia': typeof AuthenticatedMembresiaRoute
+  '/notificaciones': typeof AuthenticatedNotificacionesRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/auth/admin': typeof AuthAdminRoute
+  '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
+  '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/asistencias': typeof AuthenticatedAsistenciasRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/eventos': typeof AuthenticatedEventosRoute
+  '/membresia': typeof AuthenticatedMembresiaRoute
+  '/notificaciones': typeof AuthenticatedNotificacionesRoute
+  '/perfil': typeof AuthenticatedPerfilRoute
+  '/auth/admin': typeof AuthAdminRoute
+  '/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
+  '/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/asistencias': typeof AuthenticatedAsistenciasRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/eventos': typeof AuthenticatedEventosRoute
+  '/_authenticated/membresia': typeof AuthenticatedMembresiaRoute
+  '/_authenticated/notificaciones': typeof AuthenticatedNotificacionesRoute
+  '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
+  '/auth_/admin': typeof AuthAdminRoute
+  '/_authenticated/admin/alertas': typeof AuthenticatedAdminAlertasRoute
+  '/_authenticated/admin/configuracion': typeof AuthenticatedAdminConfiguracionRoute
+  '/_authenticated/admin/control-acceso': typeof AuthenticatedAdminControlAccesoRoute
+  '/_authenticated/admin/dispositivos': typeof AuthenticatedAdminDispositivosRoute
+  '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
+  '/_authenticated/admin/visitantes': typeof AuthenticatedAdminVisitantesRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/admin'
+    | '/asistencias'
+    | '/dashboard'
+    | '/eventos'
+    | '/membresia'
+    | '/notificaciones'
+    | '/perfil'
+    | '/auth/admin'
+    | '/admin/alertas'
+    | '/admin/configuracion'
+    | '/admin/control-acceso'
+    | '/admin/dispositivos'
+    | '/admin/eventos'
+    | '/admin/socios'
+    | '/admin/visitantes'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/asistencias'
+    | '/dashboard'
+    | '/eventos'
+    | '/membresia'
+    | '/notificaciones'
+    | '/perfil'
+    | '/auth/admin'
+    | '/admin/alertas'
+    | '/admin/configuracion'
+    | '/admin/control-acceso'
+    | '/admin/dispositivos'
+    | '/admin/eventos'
+    | '/admin/socios'
+    | '/admin/visitantes'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/admin'
+    | '/_authenticated/asistencias'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/eventos'
+    | '/_authenticated/membresia'
+    | '/_authenticated/notificaciones'
+    | '/_authenticated/perfil'
+    | '/auth_/admin'
+    | '/_authenticated/admin/alertas'
+    | '/_authenticated/admin/configuracion'
+    | '/_authenticated/admin/control-acceso'
+    | '/_authenticated/admin/dispositivos'
+    | '/_authenticated/admin/eventos'
+    | '/_authenticated/admin/socios'
+    | '/_authenticated/admin/visitantes'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  AuthAdminRoute: typeof AuthAdminRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +287,176 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth_/admin': {
+      id: '/auth_/admin'
+      path: '/auth/admin'
+      fullPath: '/auth/admin'
+      preLoaderRoute: typeof AuthAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/perfil': {
+      id: '/_authenticated/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof AuthenticatedPerfilRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/notificaciones': {
+      id: '/_authenticated/notificaciones'
+      path: '/notificaciones'
+      fullPath: '/notificaciones'
+      preLoaderRoute: typeof AuthenticatedNotificacionesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/membresia': {
+      id: '/_authenticated/membresia'
+      path: '/membresia'
+      fullPath: '/membresia'
+      preLoaderRoute: typeof AuthenticatedMembresiaRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/eventos': {
+      id: '/_authenticated/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof AuthenticatedEventosRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/asistencias': {
+      id: '/_authenticated/asistencias'
+      path: '/asistencias'
+      fullPath: '/asistencias'
+      preLoaderRoute: typeof AuthenticatedAsistenciasRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/visitantes': {
+      id: '/_authenticated/admin/visitantes'
+      path: '/visitantes'
+      fullPath: '/admin/visitantes'
+      preLoaderRoute: typeof AuthenticatedAdminVisitantesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/socios': {
+      id: '/_authenticated/admin/socios'
+      path: '/socios'
+      fullPath: '/admin/socios'
+      preLoaderRoute: typeof AuthenticatedAdminSociosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/eventos': {
+      id: '/_authenticated/admin/eventos'
+      path: '/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/dispositivos': {
+      id: '/_authenticated/admin/dispositivos'
+      path: '/dispositivos'
+      fullPath: '/admin/dispositivos'
+      preLoaderRoute: typeof AuthenticatedAdminDispositivosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/control-acceso': {
+      id: '/_authenticated/admin/control-acceso'
+      path: '/control-acceso'
+      fullPath: '/admin/control-acceso'
+      preLoaderRoute: typeof AuthenticatedAdminControlAccesoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/configuracion': {
+      id: '/_authenticated/admin/configuracion'
+      path: '/configuracion'
+      fullPath: '/admin/configuracion'
+      preLoaderRoute: typeof AuthenticatedAdminConfiguracionRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/alertas': {
+      id: '/_authenticated/admin/alertas'
+      path: '/alertas'
+      fullPath: '/admin/alertas'
+      preLoaderRoute: typeof AuthenticatedAdminAlertasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAlertasRoute: typeof AuthenticatedAdminAlertasRoute
+  AuthenticatedAdminConfiguracionRoute: typeof AuthenticatedAdminConfiguracionRoute
+  AuthenticatedAdminControlAccesoRoute: typeof AuthenticatedAdminControlAccesoRoute
+  AuthenticatedAdminDispositivosRoute: typeof AuthenticatedAdminDispositivosRoute
+  AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
+  AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
+  AuthenticatedAdminVisitantesRoute: typeof AuthenticatedAdminVisitantesRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAlertasRoute: AuthenticatedAdminAlertasRoute,
+  AuthenticatedAdminConfiguracionRoute: AuthenticatedAdminConfiguracionRoute,
+  AuthenticatedAdminControlAccesoRoute: AuthenticatedAdminControlAccesoRoute,
+  AuthenticatedAdminDispositivosRoute: AuthenticatedAdminDispositivosRoute,
+  AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
+  AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
+  AuthenticatedAdminVisitantesRoute: AuthenticatedAdminVisitantesRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedAsistenciasRoute: typeof AuthenticatedAsistenciasRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEventosRoute: typeof AuthenticatedEventosRoute
+  AuthenticatedMembresiaRoute: typeof AuthenticatedMembresiaRoute
+  AuthenticatedNotificacionesRoute: typeof AuthenticatedNotificacionesRoute
+  AuthenticatedPerfilRoute: typeof AuthenticatedPerfilRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedAsistenciasRoute: AuthenticatedAsistenciasRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEventosRoute: AuthenticatedEventosRoute,
+  AuthenticatedMembresiaRoute: AuthenticatedMembresiaRoute,
+  AuthenticatedNotificacionesRoute: AuthenticatedNotificacionesRoute,
+  AuthenticatedPerfilRoute: AuthenticatedPerfilRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AuthRoute: AuthRoute,
+  AuthAdminRoute: AuthAdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
