@@ -21,6 +21,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAsistenciasRouteImport } from './routes/_authenticated.asistencias'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
+import { Route as AuthenticatedAdminSociosRouteImport } from './routes/_authenticated.admin.socios'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -83,6 +84,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminSociosRoute =
+  AuthenticatedAdminSociosRouteImport.update({
+    id: '/socios',
+    path: '/socios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -107,6 +115,7 @@ export interface FileRoutesByTo {
   '/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/perfil': typeof AuthenticatedPerfilRoute
   '/auth/admin': typeof AuthAdminRoute
+  '/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -122,6 +131,7 @@ export interface FileRoutesById {
   '/_authenticated/notificaciones': typeof AuthenticatedNotificacionesRoute
   '/_authenticated/perfil': typeof AuthenticatedPerfilRoute
   '/auth_/admin': typeof AuthAdminRoute
+  '/_authenticated/admin/socios': typeof AuthenticatedAdminSociosRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/socios'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/notificaciones'
     | '/perfil'
     | '/auth/admin'
+    | '/admin/socios'
     | '/admin'
   id:
     | '__root__'
@@ -163,6 +175,7 @@ export interface FileRouteTypes {
     | '/_authenticated/notificaciones'
     | '/_authenticated/perfil'
     | '/auth_/admin'
+    | '/_authenticated/admin/socios'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -259,14 +272,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/socios': {
+      id: '/_authenticated/admin/socios'
+      path: '/socios'
+      fullPath: '/admin/socios'
+      preLoaderRoute: typeof AuthenticatedAdminSociosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminSociosRoute: typeof AuthenticatedAdminSociosRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminSociosRoute: AuthenticatedAdminSociosRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
